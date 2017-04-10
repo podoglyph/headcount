@@ -17,7 +17,6 @@ Iteration 0
         Statewide Testing
         Economic Profile
 
-
 2) Create basic domain objects for the District and Enrollment data
     Class: District
     Class: Enrollment
