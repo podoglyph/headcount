@@ -1,0 +1,26 @@
+Iteration 0
+---------------------------------------------------------
+
+1) Provide a top-level interface to query for information by District name
+    Class: District Repository
+      Holds and searches the District instances.
+      Houses the following methods:
+        load_data
+          -
+        find_by_name
+          -
+        find_all_matching
+          -
+
+      Uses the following 3 data categories:
+        Enrollment
+        Statewide Testing
+        Economic Profile
+
+
+2) Create basic domain objects for the District and Enrollment data
+    Class: District
+    Class: Enrollment
+
+3) Construct appropriate relationships between Districts and underlying Enrollment data
+4) Use these domain objects to answer some basic analytical questions about enrollment by district.
