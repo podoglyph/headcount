@@ -6,13 +6,15 @@ class DistrictRepositoryTest < Minitest::Test
 
   def test_it_exists
     d = DistrictRepository.new
+    
     assert_equal DistrictRepository, d.class
   end
 
-  def test_it_can_load_file
+  def test_load_data
     d = DistrictRepository.new
-    # File.read('./data/').split("\n")
-    
+    file = d.load_data('hello.txt')
+
+    assert_equal ["hello"], file
   end
 
 
