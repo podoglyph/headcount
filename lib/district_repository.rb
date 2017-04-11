@@ -1,7 +1,7 @@
 require_relative 'district'
 require 'csv'
-require 'pry'
-require 'pry-state'
+# require 'pry'
+# require 'pry-state'
 
 class DistrictRepository
   attr_reader :districts
@@ -12,6 +12,7 @@ class DistrictRepository
 
   def load_data(args)
     contents = CSV.open args[:enrollment][:kindergarten], headers: true, header_converters: :symbol
+
     @districts_list = extract_locations(contents)
     @districts = {:enrollment => {:kindergarten => @districts_list}}
   end
@@ -21,7 +22,7 @@ class DistrictRepository
     @districts_list.each do |district|
       searchable_name = district.name.upcase
       if find_name == searchable_name
-        return district
+        return district.name
       end
     end
   end
@@ -38,14 +39,10 @@ class DistrictRepository
     matched
   end
 
-  private
   def extract_locations(contents)
     contents = contents.map do |x|
       name = x[:location]
       x = District.new(name)
     end
   end
-
-
-
 end

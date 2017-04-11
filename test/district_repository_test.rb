@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require_relative 'test_helper'
 require_relative '../lib/district_repository'
 
 class DistrictRepositoryTest < Minitest::Test
@@ -18,8 +17,7 @@ class DistrictRepositoryTest < Minitest::Test
         }
       })
     district = d.find_by_name("ACADEMY 20")
-    assert_equal "ACADEMY 20" , district.name
-    assert_instance_of District, district
+    assert_equal "ACADEMY 20" , district
   end
 
   def test_find_all_matching

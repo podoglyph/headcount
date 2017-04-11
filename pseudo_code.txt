@@ -24,3 +24,9 @@ Iteration 0
 
 3) Construct appropriate relationships between Districts and underlying Enrollment data
 4) Use these domain objects to answer some basic analytical questions about enrollment by district.
+
+
+Create cleaner.rb (clean the shit out of data)
+Create CSV_handler.rb (rework file importing)
+
+use find and find_all for DR methods
