@@ -1,4 +1,4 @@
-require_relative 'district.rb'
+require_relative 'district'
 require 'csv'
 require 'pry'
 require 'pry-state'

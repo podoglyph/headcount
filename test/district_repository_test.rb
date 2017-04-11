@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/district_repository.rb'
+require_relative '../lib/district_repository'
 
 class DistrictRepositoryTest < Minitest::Test
 
@@ -34,7 +34,7 @@ class DistrictRepositoryTest < Minitest::Test
     searched_for = d.find_all_matching("COLOR")
 
     assert_equal 22, searched_for.length
-    
+
     not_matched = d.find_all_matching("ASDF")
     assert_equal [], not_matched
   end
