@@ -1,7 +1,7 @@
 require_relative 'district'
 require 'csv'
-# require 'pry'
-# require 'pry-state'
+require 'pry'
+require 'pry-state'
 
 class DistrictRepository
   attr_reader :districts
@@ -19,21 +19,16 @@ class DistrictRepository
 
   def find_by_name(find_name)
     find_name = find_name.upcase
-    @districts_list.each do |district|
-      searchable_name = district.name.upcase
-      if find_name == searchable_name
-        return district.name
-      end
+    @districts_list.find do |district|
+      district.name == find_name
     end
   end
 
-  def find_all_matching(data)
-    name_two = data.upcase
+  def find_all_matching(find_name)
     matched = []
-    @districts_list.each do |district|
-      searchable_name = district.name.upcase
-      if searchable_name.start_with?(name_two)
-        matched << district
+    @districts_list.find_all do |district|
+      if district.name.upcase.include? find_name.upcase
+        matched << district.name
       end
     end
     matched
@@ -41,8 +36,8 @@ class DistrictRepository
 
   def extract_locations(contents)
     contents = contents.map do |x|
-      name = x[:location]
-      x = District.new(name)
+      x[:name] = x[:location]
+      District.new(x)
     end
   end
 end

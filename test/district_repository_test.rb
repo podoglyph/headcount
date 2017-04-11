@@ -17,7 +17,7 @@ class DistrictRepositoryTest < Minitest::Test
         }
       })
     district = d.find_by_name("ACADEMY 20")
-    assert_equal "ACADEMY 20" , district
+    assert_equal "ACADEMY 20" , district.name
   end
 
   def test_find_all_matching
@@ -27,9 +27,9 @@ class DistrictRepositoryTest < Minitest::Test
         :kindergarten => "./data/Kindergartners in full-day program.csv"
         }
       })
-    searched_for = d.find_all_matching("COLOR")
+    searched_for = d.find_all_matching("WIL")
 
-    assert_equal 22, searched_for.length
+    assert_equal 24, searched_for.length
 
     not_matched = d.find_all_matching("ASDF")
     assert_equal [], not_matched
