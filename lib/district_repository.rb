@@ -40,11 +40,10 @@ class DistrictRepository
     matched = []
     @districts_list.each do |district|
       searchable_name = district.name.upcase
-      if searchable_name.scan(/(name_two)/)
+      if searchable_name.starts_with(name_two)
         matched << district
       end
     end
-    binding.pry
     matched
     #find_all_matching - returns either [] or one or more matches which contain the supplied name fragment, case insensitive
   end
