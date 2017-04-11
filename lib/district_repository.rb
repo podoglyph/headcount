@@ -16,16 +16,7 @@ class DistrictRepository
     @districts = {:enrollment => {:kindergarten => @districts_list}}
   end
 
-  def extract_locations(contents)
-    #create a list we can search.
-    contents = contents.map do |x|
-      name = x[:location]
-      x = District.new(name)
-    end
-  end
-
   def find_by_name(find_name)
-    #find a specific name in the list of districts
     find_name = find_name.upcase
     @districts_list.each do |district|
       searchable_name = district.name.upcase
@@ -46,5 +37,15 @@ class DistrictRepository
     end
     matched
   end
+
+  private
+  def extract_locations(contents)
+    contents = contents.map do |x|
+      name = x[:location]
+      x = District.new(name)
+    end
+  end
+
+
 
 end
