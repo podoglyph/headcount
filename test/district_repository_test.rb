@@ -26,14 +26,18 @@ class DistrictRepositoryTest < Minitest::Test
 
   def test_find_all_matching
     d = DistrictRepository.new
+    d.load_data({
+      :enrollment => {
+        :kindergarten => "./data/Kindergartners in full-day program.csv"
+        }
+      })
+    searched_for = d.find_all_matching("COLOR")
 
-    matched = d.find_all_matching("COLOR")
-
-    assert_equal colorados, matched
-    assert_equal colorados.length, matched.length
-
-    not_matched = d.find_all_matching("ASDF")
-    assert_equal [], not_matched
+    assert_equal 12, searched_for.length
+    # assert_equal colorados.length, matched.length
+    #
+    # not_matched = d.find_all_matching("ASDF")
+    # assert_equal [], not_matched
   end
 
 end
