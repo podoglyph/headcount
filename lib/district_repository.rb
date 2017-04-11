@@ -40,7 +40,7 @@ class DistrictRepository
     matched = []
     @districts_list.each do |district|
       searchable_name = district.name.upcase
-      if searchable_name.starts_with(name_two)
+      if searchable_name.start_with?(name_two)
         matched << district
       end
     end

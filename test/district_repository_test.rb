@@ -33,11 +33,10 @@ class DistrictRepositoryTest < Minitest::Test
       })
     searched_for = d.find_all_matching("COLOR")
 
-    assert_equal 12, searched_for.length
-    # assert_equal colorados.length, matched.length
-    #
-    # not_matched = d.find_all_matching("ASDF")
-    # assert_equal [], not_matched
+    assert_equal 22, searched_for.length
+    
+    not_matched = d.find_all_matching("ASDF")
+    assert_equal [], not_matched
   end
 
 end
