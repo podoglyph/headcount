@@ -36,6 +36,14 @@ class DistrictRepository
   end
 
   def find_all_matching(name)
+    name = name.upcase
+    matched = []
+    @districts_list.each do |district|
+      searchable_name = district.name.upcase
+      if searchable_name.match(/name/)
+        matched << district
+      end
+    end
     #find_all_matching - returns either [] or one or more matches which contain the supplied name fragment, case insensitive
   end
 
