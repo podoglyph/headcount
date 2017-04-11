@@ -10,7 +10,6 @@ class DistrictRepositoryTest < Minitest::Test
     assert_equal DistrictRepository, d.class
   end
 
-
   def test_find_by_name
     d = DistrictRepository.new
     d.load_data({
@@ -22,7 +21,6 @@ class DistrictRepositoryTest < Minitest::Test
     assert_equal "ACADEMY 20" , district.name
     assert_instance_of District, district
   end
-
 
   def test_find_all_matching
     d = DistrictRepository.new

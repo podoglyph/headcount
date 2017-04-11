@@ -13,7 +13,7 @@ class DistrictRepository
   def load_data(args)
     contents = CSV.open args[:enrollment][:kindergarten], headers: true, header_converters: :symbol
     @districts_list = extract_locations(contents)
-    # get a list of all locations that we can search
+    @districts = {:enrollment => {:kindergarten => @districts_list}}
   end
 
   def extract_locations(contents)
@@ -45,7 +45,6 @@ class DistrictRepository
       end
     end
     matched
-    #find_all_matching - returns either [] or one or more matches which contain the supplied name fragment, case insensitive
   end
 
 end
