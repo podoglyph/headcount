@@ -4,7 +4,7 @@ require_relative '../lib/enrollment_repository.rb'
 class EnrollmentRepositoryTest < Minitest::Test
 
   def test_it_exists
-    e = EnrollmentRepository
+    e = EnrollmentRepository.new
 
     assert_equal EnrollmentRepository, e.class
   end

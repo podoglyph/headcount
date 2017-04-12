@@ -11,17 +11,11 @@ class Enrollment
 
 
   def kindergarten_participation_by_year
-    # enrollment.kindergarten_participation_by_year
-    # { 2010 => 0.391,
-    #  2011 => 0.353,
-    #  2012 => 0.267,
-    # }
-
-
+    kindergarten_participation
   end
 
   def kindergarten_participation_in_year(year)
-
+    kindergarten_participation[year]
   end
 
 end
