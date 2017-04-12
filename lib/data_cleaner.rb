@@ -1,21 +1,22 @@
 require 'pry'
 require 'pry-state'
 
-  #all tests for data cleaner should be written in the test file associated with classes that actually use the module.
-
-
+  # all tests for data cleaner should be written in the test file
+  # associated with classes that actually use the module.
 module DataCleaner
 
-  def name_cleaner
-    #should take all data being passed through and convert it to uppercase before passing out
+  def name_cleaner(name)
+    name.upcase
   end
 
-  def integer_data_cleaner
-    #should take all data being passed through and make sure it's a float of spec designated length
-    #if not a float (bad data which is anything that's NOT a float) it should be disregarded or "skipped over"
+  def data_cleaner(data)
+    data.to_f
+    # we might need to round these floats to a certain decimal point, but
+    # should do it after all data has been put together later in program
   end
 
-  #other methods might be neccessary. if there are any occurances of bad data spotted, let's note them here
-  #so we can build appropriate methods to handle their interferance.
+  # other methods might be neccessary. if there are any occurances of bad data
+  # spotted, let's note them here so we can build appropriate methods to
+  # handle their interferance.
 
 end
