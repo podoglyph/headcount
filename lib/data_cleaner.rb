@@ -2,7 +2,7 @@ require 'pry'
 require 'pry-state'
 
   #all tests for data cleaner should be written in the test file associated with classes that actually use the module.
-  
+
 
 module DataCleaner
 
