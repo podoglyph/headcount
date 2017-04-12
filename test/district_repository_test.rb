@@ -27,9 +27,8 @@ class DistrictRepositoryTest < Minitest::Test
         :kindergarten => "./data/Kindergartners in full-day program.csv"
         }
       })
-    searched_for = d.find_all_matching("WIL")
-
-    assert_equal 24, searched_for.length
+    searched_for = d.find_all_matching("ACADEMY 20")
+    assert_equal 11, searched_for.length
 
     not_matched = d.find_all_matching("ASDF")
     assert_equal [], not_matched

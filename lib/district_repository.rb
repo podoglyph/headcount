@@ -11,7 +11,8 @@ class DistrictRepository
   end
 
   def load_data(args)
-    contents = CSV.open args[:enrollment][:kindergarten], headers: true, header_converters: :symbol
+    contents = CSV.open args[:enrollment][:kindergarten],
+                            headers: true, header_converters: :symbol
 
     @districts_list = extract_locations(contents)
     @districts = {:enrollment => {:kindergarten => @districts_list}}
@@ -25,13 +26,9 @@ class DistrictRepository
   end
 
   def find_all_matching(find_name)
-    matched = []
     @districts_list.find_all do |district|
-      if district.name.upcase.include? find_name.upcase
-        matched << district.name
-      end
+     district.name.upcase == find_name.upcase
     end
-    matched
   end
 
   def extract_locations(contents)
