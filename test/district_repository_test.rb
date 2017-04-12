@@ -8,6 +8,7 @@ class DistrictRepositoryTest < Minitest::Test
 
     assert_equal DistrictRepository, d.class
   end
+  
 
   def test_find_by_name
     d = DistrictRepository.new

@@ -7,5 +7,6 @@ class CleanerTest < Minitest::Test
 
     assert_equal Cleaner, c.class
   end
+  
 
 end
