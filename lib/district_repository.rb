@@ -27,11 +27,12 @@ class DistrictRepository
   def find_all_matching(find_name)
     matched = []
     @districts_list.find_all do |district|
-      if district.name.upcase.include? find_name.upcase
+      if district.name.upcase.start_with? find_name.upcase
         matched << district.name
       end
     end
-    matched
+    matched.uniq
+
   end
 
   def extract_locations(contents)
