@@ -18,6 +18,7 @@ class DistrictRepository
   end
 
   def find_by_name(find_name)
+    
     find_name = find_name.upcase
     @districts_list.find do |district|
       district.name == find_name
