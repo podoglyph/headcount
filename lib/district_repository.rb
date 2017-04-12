@@ -1,7 +1,7 @@
 require_relative 'district'
 require 'csv'
-require 'pry'
-require 'pry-state'
+# require 'pry'
+# require 'pry-state'
 
 class DistrictRepository
   attr_reader :districts
