@@ -32,7 +32,6 @@ class DistrictRepository
       end
     end
     matched.uniq
-
   end
 
   def extract_locations(contents)
