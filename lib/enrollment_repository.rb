@@ -21,7 +21,7 @@ class EnrollmentRepository
   def extract_enrollments(district_name)
     extracted = {}
     @contents.find_all do |row|
-      if row[:location] == district_name.upcase
+      if row[:location].upcase == district_name.upcase
         extracted[row[:timeframe].to_i] = row[:data].to_f
       end
     end

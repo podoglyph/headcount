@@ -1,18 +1,18 @@
 require_relative 'district'
+require_relative 'enrollment_repository'
 require 'csv'
-# require 'pry'
-# require 'pry-state'
+require 'pry'
 
 class DistrictRepository
-  attr_reader :districts
+  attr_reader :districts, :enrollment_repo
 
   def initialize
     @districts = Hash.new
+    @enrollment_repo = EnrollmentRepository.new
   end
 
   def load_data(args)
     contents = CSV.open args[:enrollment][:kindergarten], headers: true, header_converters: :symbol
-
     @districts_list = extract_locations(contents)
     @districts = {:enrollment => {:kindergarten => @districts_list}}
   end
@@ -35,8 +35,8 @@ class DistrictRepository
 
   def extract_locations(contents)
     contents = contents.map do |x|
-      x[:name] = x[:location]
-      District.new(x)
+      District.new({name: x[:location], repo: self})
     end
   end
+
 end
