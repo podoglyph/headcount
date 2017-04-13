@@ -4,8 +4,8 @@
 class District
   attr_reader :name
 
-  def initialize(csv_data)
-    @name = csv_data[:name]
+  def initialize(csv_row)
+    @name = csv_row[:name]
   end
 
 end

@@ -7,36 +7,36 @@ class DistrictRepository
   attr_reader :districts
 
   def initialize
-    @districts = Hash.new
+    @districts = {}
   end
 
   def load_data(args)
-    contents = CSV.open args[:enrollment][:kindergarten], headers: true, header_converters: :symbol
+    csv_data = CSV.open(args[:enrollment][:kindergarten], headers: true, header_converters: :symbol)
+    district_objects = extract_locations(csv_data)
+    @districts = {:enrollment => {:kindergarten => district_objects}}
+  end
 
-    @districts_list = extract_locations(contents)
-    @districts = {:enrollment => {:kindergarten => @districts_list}}
+  def extract_locations(csv_data)
+    csv_data.map do |row|
+      row[:name] = row[:location]
+      District.new(row)
+    end
   end
 
   def find_by_name(find_name)
-    @districts_list.find do |district|
-      district.name == find_name.upcase
+    districts[:enrollment][:kindergarten].find do |district|
+      district.name.upcase == find_name.upcase
     end
   end
 
   def find_all_matching(find_name)
     matched = []
-    @districts_list.find_all do |district|
-      if district.name.upcase.start_with? find_name.upcase
+    districts[:enrollment][:kindergarten].find_all do |district|
+      if district.name.upcase.start_with?(find_name.upcase)
         matched << district.name
       end
     end
     matched.uniq
   end
 
-  def extract_locations(contents)
-    contents = contents.map do |x|
-      x[:name] = x[:location]
-      District.new(x)
-    end
-  end
 end
