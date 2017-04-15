@@ -1,31 +1,41 @@
 require_relative 'enrollment'
 require 'csv'
-# require 'pry'
-# require 'pry-state'
+require 'pry'
 
 class EnrollmentRepository
-  attr_reader :enrollments
+  attr_reader :enrollments, :csv_data
 
   def initialize
     @enrollments = {}
   end
 
   def load_data(args)
-    @enrollment_csv_data = CSV.open args[:enrollment][:kindergarten], headers: true, header_converters: :symbol
+    @csv_data = CSV.open args[:enrollment][:kindergarten], headers: true, header_converters: :symbol
+    enrollment_objects = extract_enrollments(csv_data)
+
   end
 
-  def find_by_name(district_name)
-    Enrollment.new({:name => district_name.upcase, :kindergarten_participation => extract_enrollments(district_name)})
-  end
-
-  def extract_enrollments(district_name)
-    extracted = {}
-    @enrollment_csv_data.find_all do |row|
-      if row[:location] == district_name.upcase
-        extracted[row[:timeframe].to_i] = row[:data].to_f
-      end
+  def find_by_name(name)
+    if @enrollments.keys.include? name.upcase
+      @enrollments[name.upcase]
+    else
+      nil
     end
-    extracted
+  end
+
+  def extract_enrollments(csv_data)
+    csv_data.each do |row|
+      add_or_create_district(row)
+    end
+  end
+
+  def add_or_create_district(data)
+    if @enrollments.keys.include? data[:location]
+      @enrollments[data[:location]] << [[data[:timeframe].to_i, data[:data].to_f]]
+    else
+      @enrollments[data[:location].upcase] = Enrollment.new(data)
+      @enrollments[data[:location]] = [[data[:timeframe].to_i, data[:data].to_f]]
+    end
   end
 
 end
