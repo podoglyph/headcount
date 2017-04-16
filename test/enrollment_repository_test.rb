@@ -39,7 +39,6 @@ class EnrollmentRepositoryTest < Minitest::Test
         }
       })
     enrollment = e.find_by_name("ACADEMY 20")
-
   end
 
 end
