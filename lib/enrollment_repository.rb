@@ -16,11 +16,7 @@ class EnrollmentRepository
   end
 
   def find_by_name(name)
-    if @enrollments.keys.include? name.upcase #<--- if true....
-      @enrollments[name.upcase]               #<--- returns enrollment object
-    else
-      nil
-    end
+      @enrollments[name.upcase]  #<--- returns enrollment object or nil if it doesn't exist
   end
 
   def extract_enrollments(csv_data) #<--- iterates over each row of the csv object
@@ -30,15 +26,11 @@ class EnrollmentRepository
   end
 
   def add_or_create_district(data_row)
-    if name_exists?(data_row)
+    if find_by_name(data_row[:location].upcase)
       set_enrollment_data(data_row)   #<--- if you already have an enrollment with that name, it just adds more data.
     else
       create_enrollment(data_row)  #<--- creates new key with district name and value of enrollment object
     end
-  end
-
-  def name_exists?(data_row) #<--- checks to see if the name already exists in the enrollments hash
-    @enrollments.keys.include? data_row[:location].upcase
   end
 
   def set_enrollment_data(data_row)  #<--- if we've already had our first piece of kindergarten participation data added.
