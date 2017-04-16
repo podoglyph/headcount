@@ -2,11 +2,12 @@
 # require 'pry-state'
 
 class Enrollment
-  attr_reader :name, :kindergarten_participation
+  attr_reader :name
+  attr_accessor :kindergarten_participation
 
-  def initialize(enrollment_data)
-    @name = enrollment_data[:location]
-    @kindergarten_participation = enrollment_data[:kindergarten_participation]
+  def initialize(data)
+    @name = data[:name]
+    @kindergarten_participation = data[:kindergarten_participation]
   end
 
   def kindergarten_participation_by_year
