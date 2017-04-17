@@ -1,18 +1,7 @@
 Iteration 1
 
-The District object needs to know where to find its relative Enrollment object. So, in the DR, each District needs to point to an Enrollment object within the ER.
+Now that the District object can access its relative enrollment stats, we can start to run some calculations.
 
-district.enrollment.kindergarten_participation_in_year(2010) # => 0.436
-
-<District: @name = "Colorado" @repo = DR>
-
-def enrollment
-  @name
-  #1. when DR is created ER is also created with loaded data.
-  2. the District object needs a reference to the DR, which can then find the appropriate Enrollment object.
-  3. access the ER#find_by_name to find relative Enrollment object
-  4. Use that Enrollment object to call #kindergarten_participation_by_year
-  5. return the data for the year.
-end
-
-<Enrollment: @name = "Colorado", @kindergarten_participation={2007=>0.39159, 2006=>0.35364, 2005=>0.26709, 2004=>0.30201, 2008=>0.38456>
+1. Find average district participation across all years
+2. Find average for all districts in state across all years.
+3. Divide 1 by 2.

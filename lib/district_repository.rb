@@ -1,7 +1,7 @@
 require_relative 'district'
 require_relative 'enrollment_repository'
 require 'csv'
-require 'pry'
+#require 'pry'
 
 class DistrictRepository
   attr_reader :districts, :enrollment_repo
@@ -49,13 +49,3 @@ class DistrictRepository
 
 
 end
-
-# dr = DistrictRepository.new
-# dr.load_data({
-#   :enrollment => {
-#     :kindergarten => "./data/Kindergartners in full-day program.csv"
-#   }
-# })
-# district = dr.find_by_name("ACADEMY 20")
-# binding.pry
-# ""

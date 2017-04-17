@@ -1,6 +1,6 @@
 require_relative 'enrollment'
 require 'csv'
-require 'pry'
+#require 'pry'
 
 class EnrollmentRepository
   attr_reader :enrollments, :csv_data

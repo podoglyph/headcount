@@ -1,5 +1,3 @@
-# require 'pry'
-# require 'pry-state'
 require_relative 'district_repository'
 require_relative 'enrollment_repository'
 
