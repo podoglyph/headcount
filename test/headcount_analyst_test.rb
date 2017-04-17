@@ -47,8 +47,7 @@ class HeadcountAnalystTest < Minitest::Test
         }
       })
     hc = HeadcountAnalyst.new(dr)
-    @what = hc.kindergarten_participation_rate_variation("ACADEMY 20", nil)
-    binding.pry
+    hc.kindergarten_participation_rate_variation("ACADEMY 20", nil)
   end
 
 end
