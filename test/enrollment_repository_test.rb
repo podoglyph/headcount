@@ -20,16 +20,16 @@ class EnrollmentRepositoryTest < Minitest::Test
     assert_equal "ACADEMY 20" , enrollment.name
   end
 
-  # def test_extract_enrollments
-  #   e = EnrollmentRepository.new
-  #   e.load_data({
-  #     :enrollment => {
-  #       :kindergarten => "./data/Kindergartners in full-day program.csv"
-  #       }
-  #     })
-  #   enrollment = e.find_by_name("ACADEMY 20")
-  #
-  # end
+  def test_extract_enrollments
+    e = EnrollmentRepository.new
+    e.load_data({
+      :enrollment => {
+        :kindergarten => "./data/Kindergartners in full-day program.csv"
+        }
+      })
+    enrollment = e.find_by_name("ACADEMY 20")
+
+  end
 
   def test_add_or_create_district
     e = EnrollmentRepository.new

@@ -25,7 +25,7 @@ class DistrictRepositoryTest < Minitest::Test
       })
     searched_for = d.find_all_matching("WIL")
 
-    assert_equal 24, searched_for.length
+    assert_equal 1, searched_for.length
 
     not_matched = d.find_all_matching("ASDF")
     assert_equal [], not_matched
