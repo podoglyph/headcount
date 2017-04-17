@@ -24,11 +24,24 @@ class DistrictRepositoryTest < Minitest::Test
         :kindergarten => "./data/Kindergartners in full-day program.csv"
         }
       })
+
     searched_for = d.find_all_matching("WIL")
     assert_equal 1, searched_for.length
 
     not_matched = d.find_all_matching("ASDF")
     assert_equal [], not_matched
+  end
+
+  def test_enrollment_repo_is_created_on_load
+    d = DistrictRepository.new
+    d.load_data({
+      :enrollment => {
+        :kindergarten => "./data/Kindergartners in full-day program.csv"
+        }
+      })
+
+    enrollments = d.enrollment_repo
+    assert_instance_of EnrollmentRepository, enrollments
   end
 
 end
