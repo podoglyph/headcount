@@ -1,5 +1,6 @@
 require_relative 'test_helper'
 require_relative '../lib/district_repository'
+require "pry"
 
 class DistrictRepositoryTest < Minitest::Test
 
@@ -24,7 +25,6 @@ class DistrictRepositoryTest < Minitest::Test
         }
       })
     searched_for = d.find_all_matching("WIL")
-
     assert_equal 1, searched_for.length
 
     not_matched = d.find_all_matching("ASDF")
