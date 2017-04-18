@@ -58,15 +58,16 @@ class HeadcountAnalystTest < Minitest::Test
     assert_equal actual, expected
   end
 
-  # def test_comparison
-  #   dr = DistrictRepository.new
-  #   dr.load_data({
-  #     :enrollment => {
-  #       :kindergarten => "./data/Kindergartners in full-day program.csv"
-  #       }
-  #     })
-  #   ha = HeadcountAnalyst.new(dr)
-  #   answer = ha.kindergarten_participation_rate_variation('ACADEMY 20')
-  #
-  # end
+  def test_comparison
+    dr = DistrictRepository.new
+    dr.load_data({
+      :enrollment => {
+        :kindergarten => "./data/Kindergartners in full-day program.csv"
+        }
+      })
+    ha = HeadcountAnalyst.new(dr)
+    answer = ha.kindergarten_participation_rate_variation('ACADEMY 20')
+    binding.pry
+  end
+
 end

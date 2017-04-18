@@ -6,15 +6,16 @@ class HeadcountAnalyst
   end
 
   def kindergarten_participation_rate_variation(district_name, base = nil)
-    district = @repo.find_by_name(district_name)
-    acquire_single_district_stats(district)
-    base = average_statewide_aggregate_stats
+    #base set to nil for now, work in progress to pipe in the correct data/format
+    district = @repo.find_by_name(district_name) # just popping over to the DR to get *this* district
+    acquire_single_district_stats(district) # returns the method below
+    base = average_statewide_aggregate_stats # sets base to the value of the method
     result = average_district_participation / base
     result = result.round(3)
   end
 
   def acquire_single_district_stats(district)
-    district_stats = district.enrollment.kindergarten_participation.values
+    district_stats = district.enrollment.kindergarten_participation.values #if you pop over to DR you'll see that the District.new now sends the DR onto the District object, which allows us access the DR through the District object. The DR also initializes with the ER, which is how the line above do what it does, which is District Object, ER, kindergarten_participation...
     extract_average_participation_rates(district_stats)
   end
 
