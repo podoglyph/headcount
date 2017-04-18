@@ -25,7 +25,6 @@ class HeadcountAnalystTest < Minitest::Test
     ha = HeadcountAnalyst.new(dr)
     actual = ha.kindergarten_participation_rate_variation("ACADEMY 20", "Colorado" )
     expected = 0.766
-
     assert_equal expected, actual
   end
 
@@ -58,6 +57,6 @@ class HeadcountAnalystTest < Minitest::Test
   #   assert_equal actual, expected
   # end
 
-  
+
 
 end
