@@ -1,32 +1,41 @@
 class HeadcountAnalyst
-  attr_reader :repo
+  attr_reader :repo, :average_district_participation
 
   def initialize(district_repository)
     @repo = district_repository
   end
 
-  #ha.kindergarten_participation_rate_variation('ACADEMY 20', :against => 'COLORADO') # => 0.766
-
-  # Now that the District object can access its relative enrollment stats, we can start to run some calculations.
-  #
-  # 1. Find average district participation across all years
-  # 2. Find average for all districts in state across all years.
-  # 3. Divide 1 by 2.
-
   def kindergarten_participation_rate_variation(district_name, base)
-    acquire_district_kindergarten_stats(district_name)
+    district = @repo.find_by_name(district_name)
+    acquire_single_district_stats(district)
+    average_district_participation
   end
 
-  def acquire_district_kindergarten_stats(district_name)
-    district = repo.find_by_name(district_name)
-    district_stats = district.enrollment.kindergarten_participation
-    extract_kindergarten_participation_rates(district_stats)
+  def acquire_single_district_stats(district)
+    district_stats = district.enrollment.kindergarten_participation.values
+    extract_average_participation_rates(district_stats)
   end
 
-  def extract_average_participation_rates(stats)
-    divisor = stats.length
-    sum = stats.values.inject(0){|sum,x| sum + x }
+  def extract_average_participation_rates(district_stats)
+    divisor = district_stats.length
+    sum = district_stats.inject(0){|sum,x| sum + x }
     @average_district_participation = sum / divisor
+  end
+
+  def acquire_all_districts
+    repo.enrollment_repo.enrollments
+    #return a hash with District Name => <Enrollment @kindergarten_participation=
+    # {2007=>0.39465,
+    #  2006=>0.33677,
+    #  2005=>0.27807,>
+  end
+
+  def extract_aggregate_data
+    aggregate_statewide_stats = []
+    acquire_all_districts.each_key do |k|
+      k.kindergarten_participation.each_value {|value| aggregate_statewide_stats << value }
+    end
+    @aggregate_statewide_stats
   end
 
 end
