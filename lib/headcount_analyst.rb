@@ -24,10 +24,6 @@ class HeadcountAnalyst
 
   def acquire_all_districts
     repo.enrollment_repo.enrollments
-    #return a hash with District Name => <Enrollment @kindergarten_participation=
-    # {2007=>0.39465,
-    #  2006=>0.33677,
-    #  2005=>0.27807,>
   end
 
   def extract_aggregate_data
