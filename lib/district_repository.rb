@@ -6,8 +6,8 @@ require 'csv'
 class DistrictRepository
   attr_reader :districts, :enrollment_repo
 
-  def initialize
-    @districts = []
+  def initialize(districts = [])
+    @districts = districts
     @enrollment_repo = EnrollmentRepository.new
   end
 
@@ -42,7 +42,7 @@ class DistrictRepository
 
   def find_all_matching(find_name)
     districts.select do |district|
-      district.name.upcase.start_with?(find_name.upcase)
+      district.name.upcase.include?(find_name.upcase)
     end
   end
 
