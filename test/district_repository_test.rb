@@ -18,18 +18,15 @@ class DistrictRepositoryTest < Minitest::Test
   end
 
   def test_find_all_matching
-    d = DistrictRepository.new
-    d.load_data({
-      :enrollment => {
-        :kindergarten => "./data/Kindergartners in full-day program.csv"
-        }
-      })
+    d1 = District.new({:name => "Mustache County 22"})
+    d2 = District.new({:name => "Richard's Mustache Academy"})
+    d3 = District.new({:name => "JOELS HASH ACADEMY"})
+    distric_repo = DistrictRepository.new([d1, d2, d3])
+    result = distric_repo.find_all_matching ("mustaCHe")
+    assert_equal [d1, d2], result
 
-    searched_for = d.find_all_matching("WIL")
-    assert_equal 1, searched_for.length
-
-    not_matched = d.find_all_matching("ASDF")
-    assert_equal [], not_matched
+    no_result = distric_repo.find_all_matching("Padraic")
+    assert_equal [], no_result
   end
 
   def test_enrollment_repo_is_created_on_load
@@ -37,11 +34,11 @@ class DistrictRepositoryTest < Minitest::Test
     d.load_data({
       :enrollment => {
         :kindergarten => "./data/Kindergartners in full-day program.csv"
-        }
+      }
       })
 
-    enrollments = d.enrollment_repo
-    assert_instance_of EnrollmentRepository, enrollments
-  end
+      enrollments = d.enrollment_repo
+      assert_instance_of EnrollmentRepository, enrollments
+    end
 
-end
+  end
