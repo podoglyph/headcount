@@ -39,6 +39,9 @@ class DistrictRepositoryTest < Minitest::Test
 
       enrollments = d.enrollment_repo
       assert_instance_of EnrollmentRepository, enrollments
+
+      district = d.find_by_name("ACADEMY 20")
+      assert_equal 0.436, district.enrollment.kindergarten_participation_in_year(2010)
     end
 
   end
