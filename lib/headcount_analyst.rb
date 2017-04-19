@@ -39,19 +39,4 @@ class HeadcountAnalyst
     end
     trends
   end
-
-  # def acquire_statewide_stats
-  #   @repo.find_by_name("COLORADO")
-  # end
-  #
-  # def extract_statewide_aggregate_stats
-  #   acquire_statewide_stats.enrollment.kindergarten_participation.values
-  # end
-  #
-  # def average_statewide_aggregate_stats
-  #   divisor = extract_statewide_aggregate_stats.length
-  #   sum = extract_statewide_aggregate_stats.inject(0){|sum,x| sum + x }
-  #   average_statewide_participation = sum / divisor
-  # end
-
 end

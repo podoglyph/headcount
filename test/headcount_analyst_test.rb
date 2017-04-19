@@ -31,20 +31,6 @@ class HeadcountAnalystTest < Minitest::Test
     assert_equal expected, actual
   end
 
-  # def test_extraction_of_statewide_data
-  #   dr = DistrictRepository.new
-  #   dr.load_data({
-  #     :enrollment => {
-  #       :kindergarten => "./data/Kindergartners in full-day program.csv"
-  #       }
-  #     })
-  #   ha = HeadcountAnalyst.new(dr)
-  #   expected = ha.average_statewide_aggregate_stats
-  #   actual = 0.5303936363636365
-  #
-  #   assert_equal actual, expected
-  # end
-
   def test_kindergarten_participation_rate_variation
     dr = DistrictRepository.new
     dr.load_data({
