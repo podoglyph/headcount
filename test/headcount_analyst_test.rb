@@ -58,11 +58,11 @@ class HeadcountAnalystTest < Minitest::Test
     ha = HeadcountAnalyst.new(dr)
 
     actual = ha.kindergarten_participation_rate_variation_trend('ACADEMY 20',
-                                          :against => 'YUMA SCHOOL DISTRICT 1')
-    expected = {2007=>0.696, 2006=>0.677, 2005=>0.634,
-                2004=>0.151, 2008=>0.692, 2009=>0.695,
-                2010=>0.718, 2011=>0.744, 2012=>0.739,
-                2013=>0.744, 2014=>0.745}
+                                          :against => 'Colorado')
+    expected = {2007=>0.992, 2006=>1.05, 2005=>0.961,
+                2004=>1.258, 2008=>0.718, 2009=>0.652,
+                2010=>0.681, 2011=>0.728, 2012=>0.689,
+                2013=>0.694, 2014=>0.661}
 
     assert_equal expected, actual
   end
