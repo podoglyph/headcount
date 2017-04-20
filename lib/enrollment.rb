@@ -1,6 +1,3 @@
-# require 'pry'
-# require 'pry-state'
-
 class Enrollment
   attr_reader :name
   attr_accessor :kindergarten_participation
