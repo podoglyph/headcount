@@ -2,20 +2,11 @@ require 'rake/testtask'
 
 task default: :test
 
-desc 'Pass this suite to get a 3 on base functionality'
 Rake::TestTask.new do |t|
   t.libs << "test"
-  allowed_iterations = ["zero", "one", "two", "three", "four", "five", "six"]
-  if ARGV.count > 0
-    iterations = allowed_iterations & ARGV
-    files = iterations.map do |i|
-      "test/iteration_#{i}_test.rb"
-    end
-    t.test_files = FileList[*files]
-  else
-    t.test_files = FileList['test/*iteration*.rb']
-  end
-  t.verbose = true
+  t.test_files = FileList['test/*_test.rb']
+  t.warning = false
+  t.verbose = false
 end
 
 namespace :sanitation do

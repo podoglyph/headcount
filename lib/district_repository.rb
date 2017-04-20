@@ -12,7 +12,8 @@ class DistrictRepository
   end
 
   def load_data(args)
-    csv_data = CSV.open(args[:enrollment][:kindergarten], headers: true, header_converters: :symbol)
+    csv_data = CSV.open(args[:enrollment][:kindergarten],
+                            headers: true, header_converters: :symbol)
     load_data_into_enrollment_repo
     extract_locations(csv_data)
   end

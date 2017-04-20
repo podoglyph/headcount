@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 require_relative '../lib/district_repository'
-#require "pry"
+require 'rake/testtask'
 
 class DistrictRepositoryTest < Minitest::Test
 

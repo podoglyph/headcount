@@ -1,5 +1,6 @@
 require_relative 'test_helper'
 require_relative '../lib/enrollment_repository'
+require 'rake/testtask'
 
 class EnrollmentRepositoryTest < Minitest::Test
 

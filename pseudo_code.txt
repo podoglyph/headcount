@@ -1,7 +1,0 @@
-Iteration 1
-
-Now that the District object can access its relative enrollment stats, we can start to run some calculations.
-
-1. Find average district participation across all years
-2. Find average for all districts in state across all years.
-3. Divide 1 by 2.

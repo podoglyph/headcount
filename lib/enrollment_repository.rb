@@ -9,20 +9,21 @@ class EnrollmentRepository
     @enrollments = {}
   end
 
-  def load_data(args)  #<--- Loading CSV into CSV object. Converts headers to symbols. Extract enrollment iterates over each row.
-    @csv_data = CSV.open args[:enrollment][:kindergarten], headers: true, header_converters: :symbol
+  def load_data(args)
+    @csv_data = CSV.open args[:enrollment][:kindergarten], headers: true,
+                              header_converters: :symbol
     enrollment_objects = extract_enrollments(csv_data)
   end
 
   def find_by_name(name)
-    if @enrollments.keys.include? name.upcase #<--- if true....
-      @enrollments[name.upcase]               #<--- returns enrollment object
+    if @enrollments.keys.include? name.upcase
+      @enrollments[name.upcase]
     else
       nil
     end
   end
 
-  def extract_enrollments(csv_data) #<--- iterates over each row of the csv object
+  def extract_enrollments(csv_data)
     csv_data.each do |row|
       add_or_create_district(row)
     end
@@ -30,28 +31,29 @@ class EnrollmentRepository
 
   def add_or_create_district(data_row)
     if name_exists?(data_row)
-      set_enrollment_data(data_row)   #<--- if you already have an enrollment with that name, it just adds more data.
+      set_enrollment_data(data_row)
     else
-      create_enrollment(data_row)  #<--- creates new key with district name and value of enrollment object
+      create_enrollment(data_row)
     end
   end
 
-  def name_exists?(data_row) #<--- checks to see if the name already exists in the enrollments hash
+  def name_exists?(data_row)
     @enrollments.keys.include? data_row[:location].upcase
   end
 
-  def set_enrollment_data(data_row)  #<--- if we've already had our first piece of kindergarten participation data added.
-    enr = find_by_name(data_row[:location])   #<--- enr = enrollment object with 2 attributes you can call (name, kindergarten_participation)
-    enr.kindergarten_participation = enr.kindergarten_participation.merge(year_data_set(data_row))  #<--- set kindergarten part attribute to the existing hash + the new data
+  def set_enrollment_data(data_row)
+    enr = find_by_name(data_row[:location])
+    enr.kindergarten_participation = enr.kindergarten_participation
+                                        .merge(year_data_set(data_row))
   end
 
-  def year_data_set(data_row) #<--- returns hash where year is the key and the data (float) is the value
+  def year_data_set(data_row)
     {data_row[:timeframe].to_i => data_row[:data].to_f}
   end
 
-  def create_enrollment(data_row) #<--- if there's a need for a new enrollment in add/create district method, this does it!
-    @enrollments[data_row[:location].upcase] =   #<--- calling location row (upcased) and setting key to district name.
-      Enrollment.new({:name => data_row[:location].upcase,   #<--- setting the value of the enrollment object (name)......
-                      :kindergarten_participation => year_data_set(data_row)})  #<---... and kindergarten_participation which points to hash where keys are years and values are data.
+  def create_enrollment(data_row)
+    @enrollments[data_row[:location].upcase] =
+      Enrollment.new({:name => data_row[:location].upcase,
+                      :kindergarten_participation => year_data_set(data_row)})
   end
 end

@@ -1,6 +1,7 @@
 require_relative 'test_helper'
 require_relative '../lib/headcount_analyst'
 require_relative '../lib/district_repository'
+require 'rake/testtask'
 
 class HeadcountAnalystTest < Minitest::Test
 
