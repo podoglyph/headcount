@@ -15,7 +15,7 @@ class District
   end
 
   def find_relative_district_in_repo
-    @this_district = repo.find_by_name(name)
+    this_district = repo.find_by_name(name)
     find_relative_enrollment_object(this_district.name)
   end
 
@@ -23,4 +23,7 @@ class District
     @enrollment = repo.enrollment_repo.find_by_name(district_name)
   end
 
+  def kindergarten_participation_by_year
+    enrollment.kindergarten_participation_by_year
+  end
 end

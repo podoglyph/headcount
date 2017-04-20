@@ -13,6 +13,7 @@ class HeadcountAnalystTest < Minitest::Test
       })
     ha = HeadcountAnalyst.new(dr)
     assert_instance_of HeadcountAnalyst, ha
+    assert_instance_of DistrictRepository, ha.repo
   end
 
   def test_average_of_district_kindergarten_participation
@@ -23,13 +24,14 @@ class HeadcountAnalystTest < Minitest::Test
         }
       })
     ha = HeadcountAnalyst.new(dr)
-    actual = ha.kindergarten_participation_rate_variation("ACADEMY 20", "Colorado" )
+    actual = ha.kindergarten_participation_rate_variation('ACADEMY 20',
+                                                          :against => 'COLORADO')
     expected = 0.766
 
     assert_equal expected, actual
   end
 
-  def test_extraction_of_statewide_data
+  def test_kindergarten_participation_rate_variation
     dr = DistrictRepository.new
     dr.load_data({
       :enrollment => {
@@ -37,27 +39,30 @@ class HeadcountAnalystTest < Minitest::Test
         }
       })
     ha = HeadcountAnalyst.new(dr)
-    expected = ha.average_statewide_aggregate_stats
-    actual = 0.5303936363636365
+
+    actual = ha.kindergarten_participation_rate_variation('ACADEMY 20',
+                                          :against => 'YUMA SCHOOL DISTRICT 1')
+    expected = 0.447
 
     assert_equal actual, expected
   end
 
-  # def test_average_of_statewide_stats
-  #   dr = DistrictRepository.new
-  #   dr.load_data({
-  #     :enrollment => {
-  #       :kindergarten => "./data/Kindergartners in full-day program.csv"
-  #       }
-  #     })
-  #   ha = HeadcountAnalyst.new(dr)
-  #
-  #   actual = ha.average_statewide_aggregate_stats
-  #   expected = 0.6876130637870412
-  #
-  #   assert_equal actual, expected
-  # end
+  def test_kindergarten_participation_rate_variation_trend
+    dr = DistrictRepository.new
+    dr.load_data({
+      :enrollment => {
+        :kindergarten => "./data/Kindergartners in full-day program.csv"
+        }
+      })
+    ha = HeadcountAnalyst.new(dr)
 
-  
+    actual = ha.kindergarten_participation_rate_variation_trend('ACADEMY 20',
+                                          :against => 'YUMA SCHOOL DISTRICT 1')
+    expected = {2007=>0.696, 2006=>0.677, 2005=>0.634,
+                2004=>0.151, 2008=>0.692, 2009=>0.695,
+                2010=>0.718, 2011=>0.744, 2012=>0.739,
+                2013=>0.744, 2014=>0.745}
 
+    assert_equal expected, actual
+  end
 end
