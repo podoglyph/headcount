@@ -1,4 +1,3 @@
-require 'pry'
 class HeadcountAnalyst
   attr_reader :repo, :average_district_participation
 
